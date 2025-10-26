@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Counseling - M-SHAURI</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/counseling.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>M-SHAURI</h2>
+                <span>AI Counseling</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="questionnaire.html" class="nav-link">Assessment</a>
+                <a href="#counseling" class="nav-link active">AI Counseling</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="toggleLanguage()">
+                        <i class="fas fa-language"></i> Swahili
+                    </button>
+                    <button class="btn btn-primary" onclick="showUserMenu()">
+                        <i class="fas fa-user"></i> User
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Counseling Container -->
+    <div class="counseling-container">
+        <div class="container">
+            <!-- Counseling Header -->
+            <div class="counseling-header">
+                <h1>AI Mental Health Counselor</h1>
+                <p>Chat with our AI assistant for immediate support, guidance, and preliminary mental health advice.</p>
+                <div class="counseling-info">
+                    <div class="info-item">
+                        <i class="fas fa-robot"></i>
+                        <span>AI-Powered Support</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Confidential & Secure</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Available 24/7</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Interface -->
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="chat-info">
+                        <h3>M-SHAURI AI Counselor</h3>
+                        <span class="status online">Online</span>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="btn btn-sm btn-outline" onclick="clearChat()">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                        <button class="btn btn-sm btn-outline" onclick="exportChat()">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>Hello! I'm your AI mental health counselor. I'm here to listen, provide support, and offer guidance. How are you feeling today? What would you like to talk about?</p>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <textarea 
+                            id="messageInput" 
+                            placeholder="Type your message here... (Press Enter to send, Shift+Enter for new line)"
+                            rows="1"
+                            maxlength="1000"
+                        ></textarea>
+                        <button class="btn btn-primary" id="sendButton" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="chat-suggestions" id="chatSuggestions">
+                        <button class="suggestion-btn" onclick="sendSuggestion('I\'m feeling anxious today')">
+                            I'm feeling anxious today
+                        </button>
+                        <button class="suggestion-btn" onclick="sendSuggestion('I\'m having trouble sleeping')">
+                            I'm having trouble sleeping
+                        </button>
+                        <button class="suggestion-btn" onclick="sendSuggestion('I feel overwhelmed')">
+                            I feel overwhelmed
+                        </button>
+                        <button class="suggestion-btn" onclick="sendSuggestion('I need help with stress')">
+                            I need help with stress
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Panel -->
+            <div class="emergency-panel" id="emergencyPanel" style="display: none;">
+                <div class="emergency-content">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Immediate Support Available</h3>
+                    <p>If you're experiencing a mental health crisis, please contact emergency services immediately.</p>
+                    <div class="emergency-contacts">
+                        <button class="btn btn-emergency" onclick="callEmergency()">
+                            <i class="fas fa-phone"></i> Emergency: 112
+                        </button>
+                        <button class="btn btn-emergency" onclick="callMentalHealth()">
+                            <i class="fas fa-heart"></i> Mental Health: +255 XXX XXX XXX
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Panel -->
+            <div class="resources-panel">
+                <h3>Helpful Resources</h3>
+                <div class="resource-links">
+                    <a href="resources.html" class="resource-link">
+                        <i class="fas fa-book"></i>
+                        <span>Mental Health Resources</span>
+                    </a>
+                    <a href="questionnaire.html" class="resource-link">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span>Take Assessment</span>
+                    </a>
+                    <button class="resource-link" onclick="showBreathingExercise()">
+                        <i class="fas fa-lungs"></i>
+                        <span>Breathing Exercise</span>
+                    </button>
+                    <button class="resource-link" onclick="showMindfulness()">
+                        <i class="fas fa-leaf"></i>
+                        <span>Mindfulness Guide</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breathing Exercise Modal -->
+    <div id="breathingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('breathingModal')">&times;</span>
+            <h2>Breathing Exercise</h2>
+            <div class="breathing-exercise">
+                <div class="breathing-circle" id="breathingCircle">
+                    <div class="breathing-text" id="breathingText">Breathe In</div>
+                </div>
+                <div class="breathing-controls">
+                    <button class="btn btn-primary" onclick="startBreathing()" id="startBreathingBtn">Start Exercise</button>
+                    <button class="btn btn-secondary" onclick="stopBreathing()" id="stopBreathingBtn" style="display: none;">Stop</button>
+                </div>
+                <div class="breathing-instructions">
+                    <h3>4-7-8 Breathing Technique</h3>
+                    <ol>
+                        <li>Breathe in through your nose for 4 counts</li>
+                        <li>Hold your breath for 7 counts</li>
+                        <li>Exhale through your mouth for 8 counts</li>
+                        <li>Repeat 3-4 times</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mindfulness Modal -->
+    <div id="mindfulnessModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('mindfulnessModal')">&times;</span>
+            <h2>Mindfulness Exercise</h2>
+            <div class="mindfulness-exercise">
+                <div class="mindfulness-content">
+                    <h3>5-4-3-2-1 Grounding Technique</h3>
+                    <p>This technique helps you focus on the present moment and reduce anxiety.</p>
+                    <div class="grounding-steps">
+                        <div class="step">
+                            <h4>5 Things You Can See</h4>
+                            <input type="text" placeholder="Name 5 things you can see around you">
+                        </div>
+                        <div class="step">
+                            <h4>4 Things You Can Touch</h4>
+                            <input type="text" placeholder="Name 4 things you can touch">
+                        </div>
+                        <div class="step">
+                            <h4>3 Things You Can Hear</h4>
+                            <input type="text" placeholder="Name 3 things you can hear">
+                        </div>
+                        <div class="step">
+                            <h4>2 Things You Can Smell</h4>
+                            <input type="text" placeholder="Name 2 things you can smell">
+                        </div>
+                        <div class="step">
+                            <h4>1 Thing You Can Taste</h4>
+                            <input type="text" placeholder="Name 1 thing you can taste">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="completeGrounding()">Complete Exercise</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/counseling.js"></script>
+</body>
+</html>

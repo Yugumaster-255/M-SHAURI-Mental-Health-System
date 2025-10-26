@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Assessment - M-SHAURI</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/assessment.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>M-SHAURI</h2>
+                <span>Mental Health Assessment</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#assessment" class="nav-link active">Assessment</a>
+                <a href="counseling.html" class="nav-link">AI Counseling</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="toggleLanguage()">
+                        <i class="fas fa-language"></i> Swahili
+                    </button>
+                    <button class="btn btn-primary" onclick="showUserMenu()">
+                        <i class="fas fa-user"></i> User
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Assessment Container -->
+    <div class="assessment-container">
+        <div class="container">
+            <!-- Assessment Header -->
+            <div class="assessment-header">
+                <h1>Mental Health Self-Assessment</h1>
+                <p>This assessment will help us understand your current mental health status and provide personalized recommendations.</p>
+                <div class="assessment-info">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Estimated time: 10-15 minutes</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Your responses are confidential</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Designed for your wellbeing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">Question 1 of 21</span>
+            </div>
+
+            <!-- Assessment Form -->
+            <form id="assessmentForm" class="assessment-form">
+                <!-- PHQ-9 Depression Assessment -->
+                <div class="assessment-section" id="phq9-section">
+                    <h2>Depression Assessment (PHQ-9)</h2>
+                    <p>Over the last 2 weeks, how often have you been bothered by any of the following problems?</p>
+                    
+                    <div class="question-group">
+                        <h3>1. Little interest or pleasure in doing things</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="phq9_1" value="0"> Not at all</label>
+                            <label><input type="radio" name="phq9_1" value="1"> Several days</label>
+                            <label><input type="radio" name="phq9_1" value="2"> More than half the days</label>
+                            <label><input type="radio" name="phq9_1" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>2. Feeling down, depressed, or hopeless</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="phq9_2" value="0"> Not at all</label>
+                            <label><input type="radio" name="phq9_2" value="1"> Several days</label>
+                            <label><input type="radio" name="phq9_2" value="2"> More than half the days</label>
+                            <label><input type="radio" name="phq9_2" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>3. Trouble falling or staying asleep, or sleeping too much</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="phq9_3" value="0"> Not at all</label>
+                            <label><input type="radio" name="phq9_3" value="1"> Several days</label>
+                            <label><input type="radio" name="phq9_3" value="2"> More than half the days</label>
+                            <label><input type="radio" name="phq9_3" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>4. Feeling tired or having little energy</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="phq9_4" value="0"> Not at all</label>
+                            <label><input type="radio" name="phq9_4" value="1"> Several days</label>
+                            <label><input type="radio" name="phq9_4" value="2"> More than half the days</label>
+                            <label><input type="radio" name="phq9_4" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>5. Poor appetite or overeating</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="phq9_5" value="0"> Not at all</label>
+                            <label><input type="radio" name="phq9_5" value="1"> Several days</label>
+                            <label><input type="radio" name="phq9_5" value="2"> More than half the days</label>
+                            <label><input type="radio" name="phq9_5" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>6. Feeling bad about yourself - or that you are a failure or have let yourself or your family down</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="phq9_6" value="0"> Not at all</label>
+                            <label><input type="radio" name="phq9_6" value="1"> Several days</label>
+                            <label><input type="radio" name="phq9_6" value="2"> More than half the days</label>
+                            <label><input type="radio" name="phq9_6" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>7. Trouble concentrating on things, such as reading the newspaper or watching television</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="phq9_7" value="0"> Not at all</label>
+                            <label><input type="radio" name="phq9_7" value="1"> Several days</label>
+                            <label><input type="radio" name="phq9_7" value="2"> More than half the days</label>
+                            <label><input type="radio" name="phq9_7" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>8. Moving or speaking so slowly that other people could have noticed, or the opposite - being so fidgety or restless that you have been moving around a lot more than usual</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="phq9_8" value="0"> Not at all</label>
+                            <label><input type="radio" name="phq9_8" value="1"> Several days</label>
+                            <label><input type="radio" name="phq9_8" value="2"> More than half the days</label>
+                            <label><input type="radio" name="phq9_8" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>9. Thoughts that you would be better off dead, or of hurting yourself</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="phq9_9" value="0"> Not at all</label>
+                            <label><input type="radio" name="phq9_9" value="1"> Several days</label>
+                            <label><input type="radio" name="phq9_9" value="2"> More than half the days</label>
+                            <label><input type="radio" name="phq9_9" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GAD-7 Anxiety Assessment -->
+                <div class="assessment-section" id="gad7-section">
+                    <h2>Anxiety Assessment (GAD-7)</h2>
+                    <p>Over the last 2 weeks, how often have you been bothered by the following problems?</p>
+                    
+                    <div class="question-group">
+                        <h3>1. Feeling nervous, anxious, or on edge</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gad7_1" value="0"> Not at all</label>
+                            <label><input type="radio" name="gad7_1" value="1"> Several days</label>
+                            <label><input type="radio" name="gad7_1" value="2"> More than half the days</label>
+                            <label><input type="radio" name="gad7_1" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>2. Not being able to stop or control worrying</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gad7_2" value="0"> Not at all</label>
+                            <label><input type="radio" name="gad7_2" value="1"> Several days</label>
+                            <label><input type="radio" name="gad7_2" value="2"> More than half the days</label>
+                            <label><input type="radio" name="gad7_2" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>3. Worrying too much about different things</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gad7_3" value="0"> Not at all</label>
+                            <label><input type="radio" name="gad7_3" value="1"> Several days</label>
+                            <label><input type="radio" name="gad7_3" value="2"> More than half the days</label>
+                            <label><input type="radio" name="gad7_3" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>4. Trouble relaxing</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gad7_4" value="0"> Not at all</label>
+                            <label><input type="radio" name="gad7_4" value="1"> Several days</label>
+                            <label><input type="radio" name="gad7_4" value="2"> More than half the days</label>
+                            <label><input type="radio" name="gad7_4" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>5. Being so restless that it's hard to sit still</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gad7_5" value="0"> Not at all</label>
+                            <label><input type="radio" name="gad7_5" value="1"> Several days</label>
+                            <label><input type="radio" name="gad7_5" value="2"> More than half the days</label>
+                            <label><input type="radio" name="gad7_5" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>6. Becoming easily annoyed or irritable</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gad7_6" value="0"> Not at all</label>
+                            <label><input type="radio" name="gad7_6" value="1"> Several days</label>
+                            <label><input type="radio" name="gad7_6" value="2"> More than half the days</label>
+                            <label><input type="radio" name="gad7_6" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>7. Feeling afraid as if something awful might happen</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gad7_7" value="0"> Not at all</label>
+                            <label><input type="radio" name="gad7_7" value="1"> Several days</label>
+                            <label><input type="radio" name="gad7_7" value="2"> More than half the days</label>
+                            <label><input type="radio" name="gad7_7" value="3"> Nearly every day</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Questions -->
+                <div class="assessment-section" id="additional-section">
+                    <h2>Additional Questions</h2>
+                    
+                    <div class="question-group">
+                        <h3>How would you rate your overall stress level in the past month?</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="stress_level" value="1"> Very Low</label>
+                            <label><input type="radio" name="stress_level" value="2"> Low</label>
+                            <label><input type="radio" name="stress_level" value="3"> Moderate</label>
+                            <label><input type="radio" name="stress_level" value="4"> High</label>
+                            <label><input type="radio" name="stress_level" value="5"> Very High</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>How many hours of sleep do you typically get per night?</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="sleep_hours" value="1"> Less than 4 hours</label>
+                            <label><input type="radio" name="sleep_hours" value="2"> 4-5 hours</label>
+                            <label><input type="radio" name="sleep_hours" value="3"> 6-7 hours</label>
+                            <label><input type="radio" name="sleep_hours" value="4"> 8-9 hours</label>
+                            <label><input type="radio" name="sleep_hours" value="5"> More than 9 hours</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>How often do you exercise or engage in physical activity?</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="exercise" value="1"> Never</label>
+                            <label><input type="radio" name="exercise" value="2"> Rarely</label>
+                            <label><input type="radio" name="exercise" value="3"> Sometimes</label>
+                            <label><input type="radio" name="exercise" value="4"> Often</label>
+                            <label><input type="radio" name="exercise" value="5"> Very often</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>Do you have a support system (family, friends, community)?</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="support_system" value="1"> No support</label>
+                            <label><input type="radio" name="support_system" value="2"> Limited support</label>
+                            <label><input type="radio" name="support_system" value="3"> Moderate support</label>
+                            <label><input type="radio" name="support_system" value="4"> Strong support</label>
+                            <label><input type="radio" name="support_system" value="5"> Very strong support</label>
+                        </div>
+                    </div>
+
+                    <div class="question-group">
+                        <h3>Have you ever received mental health treatment or counseling?</h3>
+                        <div class="radio-group">
+                            <label><input type="radio" name="previous_treatment" value="0"> No</label>
+                            <label><input type="radio" name="previous_treatment" value="1"> Yes, currently</label>
+                            <label><input type="radio" name="previous_treatment" value="2"> Yes, in the past</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="assessment-actions">
+                    <button type="button" class="btn btn-secondary" onclick="saveProgress()">
+                        <i class="fas fa-save"></i> Save Progress
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-check"></i> Complete Assessment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="resultsModal" class="modal">
+        <div class="modal-content results-content">
+            <span class="close" onclick="closeModal('resultsModal')">&times;</span>
+            <h2>Assessment Results</h2>
+            <div id="resultsContent">
+                <!-- Results will be populated here -->
+            </div>
+            <div class="results-actions">
+                <button class="btn btn-primary" onclick="startCounseling()">
+                    <i class="fas fa-robot"></i> Start AI Counseling
+                </button>
+                <button class="btn btn-secondary" onclick="viewResources()">
+                    <i class="fas fa-book"></i> View Resources
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/assessment.js"></script>
+</body>
+</html>

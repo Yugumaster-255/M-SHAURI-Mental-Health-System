@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Resources - M-SHAURI</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/resources.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>M-SHAURI</h2>
+                <span>Mental Health Resources</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="questionnaire.html" class="nav-link">Assessment</a>
+                <a href="counseling.html" class="nav-link">AI Counseling</a>
+                <a href="#resources" class="nav-link active">Resources</a>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="toggleLanguage()">
+                        <i class="fas fa-language"></i> Swahili
+                    </button>
+                    <button class="btn btn-primary" onclick="showUserMenu()">
+                        <i class="fas fa-user"></i> User
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Resources Container -->
+    <div class="resources-container">
+        <div class="container">
+            <!-- Resources Header -->
+            <div class="resources-header">
+                <h1>Mental Health Resources</h1>
+                <p>Access a comprehensive library of mental health resources, articles, and coping strategies to support your wellbeing.</p>
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search resources...">
+                        <button class="search-btn" onclick="searchResources()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-category="all">All</button>
+                        <button class="filter-btn" data-category="depression">Depression</button>
+                        <button class="filter-btn" data-category="anxiety">Anxiety</button>
+                        <button class="filter-btn" data-category="stress">Stress</button>
+                        <button class="filter-btn" data-category="trauma">Trauma</button>
+                        <button class="filter-btn" data-category="general">General</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Resources -->
+            <div class="emergency-section">
+                <h2><i class="fas fa-exclamation-triangle"></i> Emergency Resources</h2>
+                <div class="emergency-grid">
+                    <div class="emergency-card">
+                        <div class="emergency-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="emergency-content">
+                            <h3>Emergency Services</h3>
+                            <p>For immediate help in a crisis</p>
+                            <div class="emergency-number">112</div>
+                            <button class="btn btn-emergency" onclick="callEmergency()">Call Now</button>
+                        </div>
+                    </div>
+                    <div class="emergency-card">
+                        <div class="emergency-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="emergency-content">
+                            <h3>Mental Health Helpline</h3>
+                            <p>24/7 mental health support</p>
+                            <div class="emergency-number">+255 XXX XXX XXX</div>
+                            <button class="btn btn-emergency" onclick="callMentalHealth()">Call Now</button>
+                        </div>
+                    </div>
+                    <div class="emergency-card">
+                        <div class="emergency-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <div class="emergency-content">
+                            <h3>Medical Emergency</h3>
+                            <p>For medical emergencies</p>
+                            <div class="emergency-number">114</div>
+                            <button class="btn btn-emergency" onclick="callMedical()">Call Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Grid -->
+            <div class="resources-grid" id="resourcesGrid">
+                <!-- Depression Resources -->
+                <div class="resource-card" data-category="depression">
+                    <div class="resource-icon">
+                        <i class="fas fa-heart-broken"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Understanding Depression</h3>
+                        <p>Learn about depression symptoms, causes, and treatment options. This comprehensive guide helps you understand what depression is and how to seek help.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Depression</span>
+                            <span class="tag">Mental Health</span>
+                        </div>
+                        <div class="resource-actions">
+                            <button class="btn btn-primary" onclick="openResource('depression-guide')">Read More</button>
+                            <button class="btn btn-outline" onclick="bookmarkResource('depression-guide')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-category="depression">
+                    <div class="resource-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Coping with Depression</h3>
+                        <p>Practical strategies and techniques to help manage depression symptoms. Includes self-care tips, lifestyle changes, and when to seek professional help.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Coping</span>
+                            <span class="tag">Self-Care</span>
+                        </div>
+                        <div class="resource-actions">
+                            <button class="btn btn-primary" onclick="openResource('depression-coping')">Read More</button>
+                            <button class="btn btn-outline" onclick="bookmarkResource('depression-coping')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anxiety Resources -->
+                <div class="resource-card" data-category="anxiety">
+                    <div class="resource-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Managing Anxiety</h3>
+                        <p>Comprehensive guide to understanding and managing anxiety. Includes breathing exercises, mindfulness techniques, and professional treatment options.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Anxiety</span>
+                            <span class="tag">Breathing</span>
+                        </div>
+                        <div class="resource-actions">
+                            <button class="btn btn-primary" onclick="openResource('anxiety-guide')">Read More</button>
+                            <button class="btn btn-outline" onclick="bookmarkResource('anxiety-guide')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-category="anxiety">
+                    <div class="resource-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Breathing Exercises</h3>
+                        <p>Step-by-step breathing techniques to help reduce anxiety and stress. Includes 4-7-8 breathing, box breathing, and progressive relaxation.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Breathing</span>
+                            <span class="tag">Relaxation</span>
+                        </div>
+                        <div class="resource-actions">
+                            <button class="btn btn-primary" onclick="openResource('breathing-exercises')">Try Now</button>
+                            <button class="btn btn-outline" onclick="bookmarkResource('breathing-exercises')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stress Resources -->
+                <div class="resource-card" data-category="stress">
+                    <div class="resource-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Stress Management</h3>
+                        <p>Learn effective stress management techniques including time management, relaxation methods, and lifestyle changes to reduce stress levels.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Stress</span>
+                            <span class="tag">Management</span>
+                        </div>
+                        <div class="resource-actions">
+                            <button class="btn btn-primary" onclick="openResource('stress-management')">Read More</button>
+                            <button class="btn btn-outline" onclick="bookmarkResource('stress-management')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-category="stress">
+                    <div class="resource-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Mindfulness & Meditation</h3>
+                        <p>Introduction to mindfulness practices and meditation techniques. Learn how to stay present and reduce stress through mindful awareness.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Mindfulness</span>
+                            <span class="tag">Meditation</span>
+                        </div>
+                        <div class="resource-actions">
+                            <button class="btn btn-primary" onclick="openResource('mindfulness-guide')">Start Practice</button>
+                            <button class="btn btn-outline" onclick="bookmarkResource('mindfulness-guide')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trauma Resources -->
+                <div class="resource-card" data-category="trauma">
+                    <div class="resource-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Understanding Trauma</h3>
+                        <p>Information about trauma, its effects, and healing processes. Includes signs of trauma, coping strategies, and when to seek professional help.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Trauma</span>
+                            <span class="tag">Healing</span>
+                        </div>
+                        <div class="resource-actions">
+                            <button class="btn btn-primary" onclick="openResource('trauma-guide')">Read More</button>
+                            <button class="btn btn-outline" onclick="bookmarkResource('trauma-guide')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General Resources -->
+                <div class="resource-card" data-category="general">
+                    <div class="resource-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Mental Health Basics</h3>
+                        <p>Fundamental information about mental health, common conditions, and the importance of seeking help. A great starting point for anyone.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Basics</span>
+                            <span class="tag">Education</span>
+                        </div>
+                        <div class="resource-actions">
+                            <button class="btn btn-primary" onclick="openResource('mental-health-basics')">Learn More</button>
+                            <button class="btn btn-outline" onclick="bookmarkResource('mental-health-basics')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-category="general">
+                    <div class="resource-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Support Systems</h3>
+                        <p>Learn about building and maintaining support systems. Includes information about family, friends, support groups, and professional networks.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Support</span>
+                            <span class="tag">Community</span>
+                        </div>
+                        <div class="resource-actions">
+                            <button class="btn btn-primary" onclick="openResource('support-systems')">Read More</button>
+                            <button class="btn btn-outline" onclick="bookmarkResource('support-systems')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-card" data-category="general">
+                    <div class="resource-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Physical Health & Mental Wellness</h3>
+                        <p>Explore the connection between physical health and mental wellness. Learn about exercise, nutrition, and sleep's impact on mental health.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Physical Health</span>
+                            <span class="tag">Wellness</span>
+                        </div>
+                        <div class="resource-actions">
+                            <button class="btn btn-primary" onclick="openResource('physical-mental-health')">Explore</button>
+                            <button class="btn btn-outline" onclick="bookmarkResource('physical-mental-health')">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookmarked Resources -->
+            <div class="bookmarked-section" id="bookmarkedSection" style="display: none;">
+                <h2><i class="fas fa-bookmark"></i> Your Bookmarked Resources</h2>
+                <div class="bookmarked-grid" id="bookmarkedGrid">
+                    <!-- Bookmarked resources will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resource Modal -->
+    <div id="resourceModal" class="modal">
+        <div class="modal-content resource-modal-content">
+            <span class="close" onclick="closeModal('resourceModal')">&times;</span>
+            <div id="resourceContent">
+                <!-- Resource content will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/resources.js"></script>
+</body>
+</html>

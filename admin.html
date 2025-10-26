@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - M-SHAURI</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>M-SHAURI Admin</h2>
+                <span>System Administration</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#users" class="nav-link">Users</a>
+                <a href="#assessments" class="nav-link">Assessments</a>
+                <a href="#resources" class="nav-link">Resources</a>
+                <a href="#analytics" class="nav-link">Analytics</a>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Container -->
+    <div class="admin-container">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="admin-section active">
+                <h1>System Dashboard</h1>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalUsers">0</h3>
+                            <p>Total Users</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalAssessments">0</h3>
+                            <p>Assessments Completed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalSessions">0</h3>
+                            <p>Counseling Sessions</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalResources">0</h3>
+                            <p>Resources Available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3>User Registrations (Last 30 Days)</h3>
+                        <canvas id="userRegistrationsChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Assessment Completion Rates</h3>
+                        <canvas id="assessmentChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="activity-section">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list" id="activityList">
+                        <!-- Activity items will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Section -->
+            <div id="users" class="admin-section">
+                <h1>User Management</h1>
+                
+                <div class="section-controls">
+                    <div class="search-box">
+                        <input type="text" id="userSearch" placeholder="Search users...">
+                        <button class="search-btn" onclick="searchUsers()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-primary" onclick="exportUsers()">
+                        <i class="fas fa-download"></i> Export Users
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Registration Date</th>
+                                <th>Last Login</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- User rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Assessments Section -->
+            <div id="assessments" class="admin-section">
+                <h1>Assessment Management</h1>
+                
+                <div class="section-controls">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-risk="all">All Risk Levels</button>
+                        <button class="filter-btn" data-risk="critical">Critical</button>
+                        <button class="filter-btn" data-risk="high">High</button>
+                        <button class="filter-btn" data-risk="moderate">Moderate</button>
+                        <button class="filter-btn" data-risk="low">Low</button>
+                    </div>
+                    <button class="btn btn-primary" onclick="exportAssessments()">
+                        <i class="fas fa-download"></i> Export Assessments
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Assessment Type</th>
+                                <th>Score</th>
+                                <th>Risk Level</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="assessmentsTableBody">
+                            <!-- Assessment rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Resources Section -->
+            <div id="resources" class="admin-section">
+                <h1>Resource Management</h1>
+                
+                <div class="section-controls">
+                    <button class="btn btn-primary" onclick="addResource()">
+                        <i class="fas fa-plus"></i> Add Resource
+                    </button>
+                </div>
+
+                <div class="resources-grid" id="adminResourcesGrid">
+                    <!-- Resources will be populated here -->
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div id="analytics" class="admin-section">
+                <h1>Analytics & Reports</h1>
+                
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Mental Health Trends</h3>
+                        <canvas id="mentalHealthTrendsChart"></canvas>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>User Engagement</h3>
+                        <canvas id="engagementChart"></canvas>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Geographic Distribution</h3>
+                        <canvas id="geographicChart"></canvas>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Resource Usage</h3>
+                        <canvas id="resourceUsageChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="reports-section">
+                    <h3>Generate Reports</h3>
+                    <div class="report-options">
+                        <button class="btn btn-primary" onclick="generateReport('users')">
+                            <i class="fas fa-users"></i> User Report
+                        </button>
+                        <button class="btn btn-primary" onclick="generateReport('assessments')">
+                            <i class="fas fa-clipboard-check"></i> Assessment Report
+                        </button>
+                        <button class="btn btn-primary" onclick="generateReport('counseling')">
+                            <i class="fas fa-comments"></i> Counseling Report
+                        </button>
+                        <button class="btn btn-primary" onclick="generateReport('system')">
+                            <i class="fas fa-cog"></i> System Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Resource Modal -->
+    <div id="addResourceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addResourceModal')">&times;</span>
+            <h2>Add New Resource</h2>
+            <form id="addResourceForm">
+                <div class="form-group">
+                    <label for="resourceTitle">Title</label>
+                    <input type="text" id="resourceTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="resourceContent">Content</label>
+                    <textarea id="resourceContent" name="content" rows="6" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="resourceCategory">Category</label>
+                    <select id="resourceCategory" name="category" required>
+                        <option value="depression">Depression</option>
+                        <option value="anxiety">Anxiety</option>
+                        <option value="stress">Stress</option>
+                        <option value="trauma">Trauma</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="resourceType">Type</label>
+                    <select id="resourceType" name="type" required>
+                        <option value="article">Article</option>
+                        <option value="video">Video</option>
+                        <option value="audio">Audio</option>
+                        <option value="exercise">Exercise</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addResourceModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Resource</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>
