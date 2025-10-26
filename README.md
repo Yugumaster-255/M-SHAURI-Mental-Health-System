@@ -245,11 +245,11 @@ npm test
 - **Emergency Contacts**: Immediate access to crisis resources
 - **Professional Referral**: Automatic referral to mental health professionals
 
-### Emergency Contacts (Tanzania)
+### Emergency Contacts Tanzania
 - **Police**: 112
 - **Medical Emergency**: 114
-- **Mental Health Helpline**: +255 XXX XXX XXX
-- **Crisis Support**: +255 XXX XXX XXX
+- **Mental Health Helpline**: +255 694 563 663
+- **Crisis Support**: +255 694 563 663
 
 ## 📊 Analytics & Monitoring
 
@@ -321,7 +321,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Project Lead**: [Your Name]
+- **Project Lead**: Frank Augustino
 - **Email**: contact@mshauri.tz
 - **Website**: https://mshauri.tz
 - **GitHub**: https://github.com/mshauri/mental-health-system
